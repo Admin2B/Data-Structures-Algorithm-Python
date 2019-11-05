@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-# from singlelinklist import SingleLinkList
+from singlelinklist import SingleLinkList
 
 
 class Node:
@@ -9,39 +9,21 @@ class Node:
         self.prev = None
 
 
-# class DoubleLinkList(SingleLinkList):
-class DoubleLinkList:
-    def __init__(self, node=None):
-        self.__head = node
-    def is_empty(self):
-        return self.__head is None
+class DoubleLinkList(SingleLinkList):
 
-    def length(self):
-        cur = self.__head
-        count = 0
-        while cur is not None:
-            count += 1
-            cur = cur.next
-        return count
 
-    def travel(self):
-        cur = self.__head
-        while cur is not None:
-            print(cur.item, end=" ")
-            cur = cur.next
-        print("")
     def add(self, item):
         node = Node(item)
-        node.next = self.__head
-        self.__head = node
+        node.next = self._SingleLinkList__head
+        self._SingleLinkList__head = node
         node.next.prev = node
 
     def append(self, item):
         node = Node(item)
         if self.is_empty():
-            self.__head = node
+            self._SingleLinkList__head = node
         else:
-            cur = self.__head
+            cur = self._SingleLinkList__head
             while cur.next is not None:
                 cur = cur.next
             cur.next = node
@@ -53,7 +35,7 @@ class DoubleLinkList:
         elif pos > self.length() - 1:
             self.append(item)
         else:
-            cur = self.__head
+            cur = self._SingleLinkList__head
             count = 0
             while count < pos:
                 cur = cur.next
@@ -65,11 +47,11 @@ class DoubleLinkList:
             cur.prev = node
 
     def remove(self, item):
-        cur = self.__head
+        cur = self._SingleLinkList__head
         while cur is not None:
             if cur.item == item:
-                if cur == self.__head:
-                    self.__head = cur.next
+                if cur == self._SingleLinkList__head:
+                    self._SingleLinkList__head = cur.next
                     if cur.next:
                         cur.next.prev = None
                 else:

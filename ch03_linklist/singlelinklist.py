@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 
-
 class Node:
     def __init__(self, item):
         self.item = item
